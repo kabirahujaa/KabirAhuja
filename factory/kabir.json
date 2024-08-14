@@ -1,0 +1,9 @@
+{
+	"name": "kabir",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "35c75237-f38f-44fb-82c1-4ddc1bc96d05",
+		"tenantId": "5b973f99-77df-4beb-b27d-aa0c70b8482c"
+	}
+}
