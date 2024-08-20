@@ -24,7 +24,8 @@
 					"dataset": {
 						"referenceName": "DS_AzureSQL_retail_db_customers",
 						"type": "DatasetReference"
-					}
+					},
+					"firstRowOnly": false
 				}
 			},
 			{
