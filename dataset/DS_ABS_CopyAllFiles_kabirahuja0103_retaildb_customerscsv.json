@@ -1,0 +1,27 @@
+{
+	"name": "DS_ABS_CopyAllFiles_kabirahuja0103_retaildb_customerscsv",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AzureBlobStorage_kabirahuja0103",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "retaildb"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "col_id|col_name|col_exp|col_gen|col_dob|col_company|col_desig|col_doj|col_skills|col_previous_expected_salary",
+				"type": "String"
+			}
+		]
+	}
+}
