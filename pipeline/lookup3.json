@@ -17,7 +17,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "SELECT name,email from dbo.users",
+						"sqlReaderQuery": "SELECT top 5 [name],[email] from dbo.users",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -52,7 +52,7 @@
 							"dependsOn": [],
 							"userProperties": [],
 							"typeProperties": {
-								"variableName": "Name",
+								"variableName": "userDetails",
 								"value": {
 									"value": "@concat(item().name,'-', item().email)",
 									"type": "Expression"
