@@ -73,7 +73,7 @@
 			}
 		},
 		"folder": {
-			"name": "pipeline_activities/Set Variable"
+			"name": "GetMetadata"
 		},
 		"annotations": []
 	}
