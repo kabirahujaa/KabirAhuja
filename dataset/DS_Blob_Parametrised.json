@@ -5,11 +5,20 @@
 			"referenceName": "LS_AzureBlobStorage_kabirahuja0103",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"fileName_ds": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().fileName_ds",
+					"type": "Expression"
+				},
 				"container": "retaildb"
 			},
 			"columnDelimiter": ",",
