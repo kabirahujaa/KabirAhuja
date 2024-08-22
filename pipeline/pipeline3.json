@@ -64,10 +64,17 @@
 							"typeProperties": {
 								"dataset": {
 									"referenceName": "DS_Blob_Parametrised",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"fileName_ds": {
+											"value": "@item().name",
+											"type": "Expression"
+										}
+									}
 								},
 								"fieldList": [
-									"itemName"
+									"itemName",
+									"size"
 								],
 								"storeSettings": {
 									"type": "AzureBlobStorageReadSettings",
@@ -77,11 +84,63 @@
 									"type": "DelimitedTextReadSettings"
 								}
 							}
+						},
+						{
+							"name": "Append variable1",
+							"type": "AppendVariable",
+							"dependsOn": [
+								{
+									"activity": "Get Metadata2",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "FileNamewithsize",
+								"value": {
+									"value": "@concat(string(activity(\n'Get Metadata2'\n).output.itemName),\n'-'\n,string(activity(\n'Get Metadata2'\n).output.size))",
+									"type": "Expression"
+								}
+							}
 						}
 					]
 				}
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "ForEach1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "FinalOutput",
+					"value": {
+						"value": "@variables('FileNamewithsize')",
+						"type": "Expression"
+					}
+				}
 			}
 		],
+		"variables": {
+			"FileNamewithsize": {
+				"type": "Array"
+			},
+			"FinalOutput": {
+				"type": "Array"
+			}
+		},
 		"annotations": []
 	}
 }
