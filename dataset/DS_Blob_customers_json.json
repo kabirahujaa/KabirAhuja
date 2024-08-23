@@ -1,0 +1,44 @@
+{
+	"name": "DS_Blob_customers_json",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AzureBlobStorage_kabirahuja0103",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "users.json",
+				"container": "json"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "{\"id\":1",
+				"type": "String"
+			},
+			{
+				"name": "\"age\":0",
+				"type": "String"
+			},
+			{
+				"name": "\"gender\":\"M\"",
+				"type": "String"
+			},
+			{
+				"name": "\"designation\":\"technician\"",
+				"type": "String"
+			},
+			{
+				"name": "\"salary\":85711}",
+				"type": "String"
+			}
+		]
+	}
+}
