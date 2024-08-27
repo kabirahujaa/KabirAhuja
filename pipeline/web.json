@@ -20,30 +20,6 @@
 				}
 			},
 			{
-				"name": "Set variable1",
-				"type": "SetVariable",
-				"dependsOn": [
-					{
-						"activity": "ForEach1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"variableName": "allNames",
-					"value": {
-						"value": "@variables('Name')",
-						"type": "Expression"
-					}
-				}
-			},
-			{
 				"name": "ForEach1",
 				"type": "ForEach",
 				"dependsOn": [
@@ -62,48 +38,9 @@
 					},
 					"activities": [
 						{
-							"name": "Append variable1",
-							"type": "AppendVariable",
-							"dependsOn": [],
-							"userProperties": [],
-							"typeProperties": {
-								"variableName": "Name",
-								"value": {
-									"value": "@item().Name",
-									"type": "Expression"
-								}
-							}
-						},
-						{
-							"name": "Append variable2",
-							"type": "AppendVariable",
-							"dependsOn": [],
-							"userProperties": [],
-							"typeProperties": {
-								"variableName": "email",
-								"value": {
-									"value": "@item().email",
-									"type": "Expression"
-								}
-							}
-						},
-						{
 							"name": "Stored procedure1",
 							"type": "SqlServerStoredProcedure",
-							"dependsOn": [
-								{
-									"activity": "Append variable1",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								},
-								{
-									"activity": "Append variable2",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
+							"dependsOn": [],
 							"policy": {
 								"timeout": "0.12:00:00",
 								"retry": 0,
@@ -113,10 +50,26 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"storedProcedureName": "[dbo].[deletecustomer_sp]"
+								"storedProcedureName": "[dbo].[Insert_Into_users_data_SP]",
+								"storedProcedureParameters": {
+									"name": {
+										"value": {
+											"value": "@item().Name",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"email": {
+										"value": {
+											"value": "@item().email",
+											"type": "Expression"
+										},
+										"type": "String"
+									}
+								}
 							},
 							"linkedServiceName": {
-								"referenceName": "mysandbox_dbserver",
+								"referenceName": "LS_AzureSQLDatabase_retail_db",
 								"type": "LinkedServiceReference"
 							}
 						}
